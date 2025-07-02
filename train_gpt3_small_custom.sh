@@ -35,10 +35,10 @@ GPT_MODEL_ARGS=(
 )
 
 TRAINING_ARGS=(
-    --micro-batch-size 1 
+    --micro-batch-size 16   # increase this one
     --global-batch-size 512        # Further reduced global batch size
     # --rampup-batch-size 16 16 5859375 
-    --train-iters 500000 
+    --train-iters 20  # at least 20 to make it steady
     --weight-decay 0.1 
     --adam-beta1 0.9 
     --adam-beta2 0.95 
@@ -53,8 +53,8 @@ TRAINING_ARGS=(
 )
 
 MODEL_PARALLEL_ARGS=(
-	--tensor-model-parallel-size 1     # Keeping tensor model parallelism as 1
-	--pipeline-model-parallel-size 2   # Further reduced pipeline model parallelism to 2
+	--tensor-model-parallel-size 8     # Keeping tensor model parallelism as 1
+	--pipeline-model-parallel-size 1   # Further reduced pipeline model parallelism to 2
 )
 
 DATA_ARGS=(
@@ -65,9 +65,9 @@ DATA_ARGS=(
 )
 
 EVAL_AND_LOGGING_ARGS=(
-    --log-interval 100
-    --save-interval 10000 
-    --eval-interval 1000 
+    --log-interval 1
+    --save-interval 100000 # 考虑存一次的时间和存的间隔，损失的步数
+    --eval-interval 100000 
     --save $CHECKPOINT_PATH 
     --load $CHECKPOINT_PATH 
     --eval-iters 10
