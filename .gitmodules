@@ -1,3 +1,6 @@
 [submodule "data/data/Megatron-LM_result"]
 	path = data/data/Megatron-LM_result
 	url = https://github.com/JhengLu/Megatron-LM_result.git
+[submodule "data/Megatron-LM_result"]
+	path = data/Megatron-LM_result
+	url = https://github.com/JhengLu/Megatron-LM_result.git
